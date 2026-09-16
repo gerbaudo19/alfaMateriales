@@ -1,139 +1,125 @@
-import { MapPin, MessageCircle, Mail, Clock, Navigation } from 'lucide-react'
-import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
+import { MapPin, MessageCircle, Mail, Clock, Navigation, ArrowUpRight } from 'lucide-react'
 import { COMPANY, DEFAULT_MESSAGE, waLink } from '../data/site'
 
 export default function Contact() {
   return (
-    <section id="contacto" className="bg-white py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <SectionHeading
-            overline="Contacto"
-            title="Encontranos"
-            text="Visitános, escribinos o recorré la zona para conocer nuestra ubicación."
-          />
-        </Reveal>
+    <section id="contacto" className="bg-concrete-50">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6">
+        <div className="border-x-[2.5px] border-concrete-900 bg-white">
+          <div className="grid gap-0 lg:grid-cols-5">
+            <div className="border-b-[2.5px] border-concrete-900 p-6 sm:p-8 lg:col-span-2 lg:border-b-0 lg:border-r-[2.5px]">
+              <span className="font-mono text-[11px] font-bold tracking-[0.18em] text-acer">04 — ENCONTRANOS</span>
+              <h2 className="mt-2 font-display text-[36px] font-black leading-[0.9] text-concrete-900">EN OBRA Y EN EL MAPA</h2>
+              <p className="mt-3 text-[14px] leading-6 text-acer">Visitános, escribinos o coordiná retiro y entrega.</p>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-5">
-          <Reveal className="lg:col-span-2">
-            <div className="space-y-4">
-              <div className="flex items-start gap-4 rounded-xl border border-gray-100 p-5">
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <MapPin size={22} />
-                </span>
-                <div>
-                  <h3 className="font-bold text-slate-900">Dirección</h3>
-                  <p className="mt-1 text-sm text-slate-600">
-                    {COMPANY.address.line1}
-                    <br />
-                    {COMPANY.address.line2}
-                    <br />
-                    {COMPANY.address.cp}
-                  </p>
+              <div className="mt-6 space-y-3">
+                <div className="flex gap-3 border border-concrete-200 bg-concrete-50 p-4">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-concrete-900 bg-concrete-900 text-white">
+                    <MapPin size={18} />
+                  </span>
+                  <div>
+                    <div className="font-mono text-[11px] font-black tracking-[0.1em] text-concrete-900">DIRECCIÓN</div>
+                    <div className="mt-1 font-mono text-[13px] leading-5 text-acer">
+                      {COMPANY.address.line1}
+                      <br />
+                      {COMPANY.address.line2}
+                      <br />
+                      {COMPANY.address.cp}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 border border-concrete-200 bg-white p-4">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-concrete-900 bg-obra-yellow text-concrete-900">
+                    <MessageCircle size={18} />
+                  </span>
+                  <div>
+                    <div className="font-mono text-[11px] font-black tracking-[0.1em] text-concrete-900">WHATSAPP</div>
+                    <a href={waLink(DEFAULT_MESSAGE)} className="mt-1 font-mono text-[13px] font-bold text-concrete-900 hover:text-primary">
+                      {COMPANY.whatsappDisplay}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 border border-concrete-200 bg-white p-4">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-concrete-900 bg-white text-concrete-900">
+                    <Mail size={18} />
+                  </span>
+                  <div>
+                    <div className="font-mono text-[11px] font-black tracking-[0.1em] text-concrete-900">EMAIL</div>
+                    <a href={`mailto:${COMPANY.email}`} className="mt-1 block break-all font-mono text-[12px] font-semibold text-acer hover:text-concrete-900">
+                      {COMPANY.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 border border-concrete-200 bg-white p-4">
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-concrete-900 bg-concrete-900 text-white">
+                    <Clock size={18} />
+                  </span>
+                  <div>
+                    <div className="font-mono text-[11px] font-black tracking-[0.1em] text-concrete-900">HORARIOS</div>
+                    <ul className="mt-1 space-y-0.5 font-mono text-[12px] text-acer">
+                      {COMPANY.hours.map((h) => (
+                        <li key={h.days}>
+                          <span className="font-bold text-concrete-900">{h.days}:</span> {h.time}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 rounded-xl border border-gray-100 p-5">
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-green-500/10 text-green-600">
-                  <MessageCircle size={22} />
-                </span>
-                <div>
-                  <h3 className="font-bold text-slate-900">WhatsApp</h3>
-                  <a
-                    href={waLink(DEFAULT_MESSAGE)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 text-sm font-semibold text-slate-600 transition-colors hover:text-primary"
-                  >
-                    {COMPANY.whatsappDisplay}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 rounded-xl border border-gray-100 p-5">
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-600">
-                  <Mail size={22} />
-                </span>
-                <div>
-                  <h3 className="font-bold text-slate-900">Correo electrónico</h3>
-                  <a
-                    href={`mailto:${COMPANY.email}`}
-                    className="mt-1 block text-sm font-semibold text-slate-600 break-all transition-colors hover:text-primary"
-                  >
-                    {COMPANY.email}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 rounded-xl border border-gray-100 p-5">
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600">
-                  <Clock size={22} />
-                </span>
-                <div>
-                  <h3 className="font-bold text-slate-900">Horarios</h3>
-                  <ul className="mt-1 space-y-0.5 text-sm text-slate-600">
-                    {COMPANY.hours.map((h) => (
-                      <li key={h.days}>
-                        <span className="font-semibold text-slate-700">{h.days}:</span> {h.time}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+              <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                 <a
                   href={COMPANY.mapsLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-primary-dark"
+                  className="inline-flex items-center justify-center gap-2 border-[1.5px] border-concrete-900 bg-concrete-900 px-3 py-3 font-mono text-[11px] font-black tracking-[0.08em] text-white hover:bg-black"
                 >
-                  <Navigation size={18} />
-                  Cómo llegar
+                  <Navigation size={14} /> CÓMO LLEGAR
                 </a>
                 <a
                   href={waLink(DEFAULT_MESSAGE)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-bold text-slate-700 transition-colors hover:border-green-500 hover:text-green-600"
+                  className="inline-flex items-center justify-center gap-2 border-[1.5px] border-concrete-900 bg-obra-yellow px-3 py-3 font-mono text-[11px] font-black tracking-[0.08em] text-concrete-900 hover:bg-yellow-400"
                 >
-                  <MessageCircle size={18} />
-                  Contactar por WhatsApp
+                  <MessageCircle size={14} /> WHATSAPP
                 </a>
                 <a
                   href={`mailto:${COMPANY.email}`}
-                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-bold text-slate-700 transition-colors hover:border-blue-500 hover:text-blue-600"
+                  className="inline-flex items-center justify-center gap-2 border-[1.5px] border-concrete-900 bg-white px-3 py-3 font-mono text-[11px] font-black tracking-[0.08em] text-concrete-900 hover:bg-concrete-50"
                 >
-                  <Mail size={18} />
-                  Enviar email
+                  <Mail size={14} /> EMAIL
                 </a>
               </div>
             </div>
-          </Reveal>
 
-          <Reveal delay={120} className="lg:col-span-3">
-            <div className="relative h-full min-h-[24rem] overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+            <div className="relative min-h-[380px] bg-concrete-100 lg:col-span-3">
               <iframe
                 src={COMPANY.mapsEmbed}
                 title="Mapa de ubicación de Alfa Materiales"
-                className="absolute inset-0 h-full w-full"
+                className="absolute inset-0 h-full w-full grayscale-[0.15] contrast-[1.05]"
                 style={{ border: 0 }}
                 loading="lazy"
                 allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
               />
+              <div className="pointer-events-none absolute inset-0 border-[6px] border-white/60" />
               <a
                 href={COMPANY.mapsLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-lg bg-slate-900 px-5 py-3 text-sm font-bold text-white shadow-lg transition-colors hover:bg-primary"
+                className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-[2px] border-concrete-900 bg-concrete-900 px-4 py-3 font-mono text-[12px] font-black tracking-[0.08em] text-white shadow-[4px_4px_0_#FFD400] hover:bg-black"
               >
-                <Navigation size={18} />
-                Cómo llegar
+                ABRIR EN GOOGLE MAPS <ArrowUpRight size={14} />
               </a>
+              <div className="absolute right-4 top-4 hidden border border-concrete-900 bg-white px-3 py-2 font-mono text-[11px] tracking-wide text-acer shadow-[4px_4px_0_#1A1E22] sm:block">
+                <span className="font-black text-concrete-900">C.70 374</span> · ENTRE 2 Y 3 · LA PLATA
+              </div>
             </div>
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>

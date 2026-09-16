@@ -1,65 +1,46 @@
-import { ArrowRight, Building2, Hammer } from 'lucide-react'
-import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
+import { ArrowUpRight } from 'lucide-react'
 
 export default function WhatLookingFor() {
   return (
-    <section className="bg-slate-900 py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <SectionHeading
-            overline="Ayudanos a ayudarte"
-            title="¿Qué estás buscando?"
-            text="Elegí tu rubro y te llevamos directo a lo que necesitás."
-          />
-        </Reveal>
+    <section className="border-y-[2.5px] border-concrete-900 bg-obra-yellow">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6">
+        <div className="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
+          <div className="border-b-[2.5px] border-concrete-900 py-10 sm:py-12 lg:border-b-0 lg:border-r-[2.5px] lg:pr-10">
+            <span className="font-mono text-[11px] font-black tracking-[0.18em] text-concrete-900">¿QUÉ ESTÁS BUSCANDO?</span>
+            <h2 className="mt-2 font-display text-[38px] font-black leading-[0.9] text-concrete-900 sm:text-[46px]">
+              ELEGÍ TU RUBRO
+              <span className="block font-sans text-[16px] font-semibold normal-case tracking-normal text-concrete-900/70">
+                y te llevamos directo al stock
+              </span>
+            </h2>
+          </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          <Reveal>
+          <div className="grid grid-cols-1 gap-0 sm:grid-cols-2">
             <a
               href="#productos"
-              className="group flex h-full items-center justify-between gap-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-all hover:-translate-y-1 hover:border-primary/50 hover:bg-white/10"
+              className="group flex flex-col justify-between border-b-[2.5px] border-concrete-900 bg-white p-6 hover:bg-concrete-900 hover:text-white sm:border-b-0 sm:border-r-[2.5px]"
             >
-              <div className="flex items-start gap-5">
-                <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary-light">
-                  <Building2 size={28} />
-                </span>
-                <div>
-                  <h3 className="text-xl font-extrabold text-white">Materiales para una obra</h3>
-                  <p className="mt-1 text-slate-300">
-                    Cemento, ladrillos, hierros, arena, piedra y más.
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary-light">
-                    Ver materiales
-                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
+              <div>
+                <span className="font-mono text-[10px] tracking-[0.12em] opacity-60">A — GRUESO</span>
+                <h3 className="mt-2 font-display text-[24px] font-black leading-none">MATERIALES PARA OBRA</h3>
+                <p className="mt-2 text-[13px] leading-5 opacity-70">Cemento, ladrillos, hierros, arena, piedra y más.</p>
               </div>
+              <span className="mt-6 inline-flex items-center gap-2 font-mono text-[12px] font-black tracking-[0.08em]">
+                VER MATERIALES <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </a>
-          </Reveal>
 
-          <Reveal delay={120}>
-            <a
-              href="#productos"
-              className="group flex h-full items-center justify-between gap-6 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-all hover:-translate-y-1 hover:border-primary/50 hover:bg-white/10"
-            >
-              <div className="flex items-start gap-5">
-                <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/10 text-primary-light">
-                  <Hammer size={28} />
-                </span>
-                <div>
-                  <h3 className="text-xl font-extrabold text-white">Productos de ferretería</h3>
-                  <p className="mt-1 text-slate-300">
-                    Clavos, alambre y artículos para tus proyectos y reparaciones.
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary-light">
-                    Ver ferretería
-                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
+            <a href="#productos" className="group flex flex-col justify-between bg-concrete-900 p-6 text-white hover:bg-black">
+              <div>
+                <span className="font-mono text-[10px] tracking-[0.12em] opacity-60">B — FINO</span>
+                <h3 className="mt-2 font-display text-[24px] font-black leading-none text-obra-yellow">FERRETERÍA</h3>
+                <p className="mt-2 text-[13px] leading-5 text-white/70">Clavos, alambre y artículos para tus proyectos.</p>
               </div>
+              <span className="mt-6 inline-flex items-center gap-2 font-mono text-[12px] font-black tracking-[0.08em] text-obra-yellow">
+                VER FERRETERÍA <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
             </a>
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>

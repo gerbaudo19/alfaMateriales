@@ -1,31 +1,30 @@
-import { Instagram, ArrowUpRight } from 'lucide-react'
-import Reveal from './Reveal'
+import { ArrowUpRight, Instagram } from 'lucide-react'
 import { COMPANY } from '../data/site'
 
 export default function InstagramSection() {
   return (
-    <section className="bg-gray-50 py-16 sm:py-20">
-      <Reveal>
-        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6">
-          <span className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-amber-500 via-pink-600 to-purple-600 text-white shadow-lg">
-            <Instagram size={32} />
-          </span>
-          <h2 className="mt-6 text-3xl font-extrabold text-slate-900">Seguinos en Instagram</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-600">
-            Enterate de novedades, productos y promociones de Alfa Materiales.
-          </p>
+    <section className="bg-white">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6">
+        <div className="flex flex-col items-center justify-between gap-6 border-x-[2.5px] border-b-[2.5px] border-concrete-900 bg-concrete-50 px-6 py-8 sm:flex-row sm:px-8">
+          <div className="flex items-center gap-4">
+            <span className="inline-flex h-12 w-12 items-center justify-center border-[2px] border-concrete-900 bg-concrete-900 text-white">
+              <Instagram size={22} />
+            </span>
+            <div>
+              <div className="font-display text-[22px] font-black leading-none text-concrete-900">SEGUINOS EN INSTAGRAM</div>
+              <div className="font-mono text-[12px] tracking-wide text-acer">Novedades, productos y obra en curso · {COMPANY.instagramHandle}</div>
+            </div>
+          </div>
           <a
             href={COMPANY.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-7 py-4 font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-lg"
+            className="inline-flex items-center gap-2 border-[2px] border-concrete-900 bg-white px-6 py-3 font-mono text-[12px] font-black tracking-[0.08em] text-concrete-900 shadow-[4px_4px_0_#1A1E22] hover:bg-obra-yellow"
           >
-            <Instagram size={20} />
-            {COMPANY.instagramHandle}
-            <ArrowUpRight size={18} />
+            <Instagram size={16} /> {COMPANY.instagramHandle} <ArrowUpRight size={14} />
           </a>
         </div>
-      </Reveal>
+      </div>
     </section>
   )
 }

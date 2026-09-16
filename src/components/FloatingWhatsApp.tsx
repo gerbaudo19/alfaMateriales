@@ -17,12 +17,12 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-xl shadow-green-500/40 transition-all duration-300 hover:scale-110 hover:bg-green-600 ${
-        visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-16 opacity-0'
+      className={`fixed bottom-5 right-5 z-50 flex items-center gap-2 border-[2px] border-concrete-900 bg-[#25D366] px-4 py-3 font-mono text-[12px] font-black tracking-[0.08em] text-white shadow-[5px_5px_0_#1A1E22] transition-all duration-300 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_#1A1E22] ${
+        visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-8 opacity-0'
       }`}
     >
-      <span className="absolute inset-0 animate-ping rounded-full bg-green-500/50" aria-hidden="true" />
-      <MessageCircle className="relative" size={28} />
+      <MessageCircle size={18} />
+      WHATSAPP
     </a>
   )
 }

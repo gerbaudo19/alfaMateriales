@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Menu, X, MessageCircle } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { COMPANY, DEFAULT_MESSAGE, NAV_LINKS, waLink } from '../data/site'
 
 export default function Header() {
@@ -7,78 +7,99 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 12)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open ? 'bg-white/95 shadow-md backdrop-blur' : 'bg-white/85 backdrop-blur'
-      }`}
-    >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#inicio" className="flex shrink-0 items-center gap-3" aria-label="Volver al inicio">
-          <img
-            src={`${import.meta.env.BASE_URL}logo.png`}
-            alt="Logo de Alfa Materiales"
-            className="h-11 w-11 object-contain drop-shadow-sm sm:h-12 sm:w-12"
-          />
-          <span className="flex flex-col leading-tight">
-            <span className="text-lg font-extrabold text-slate-900">Alfa Materiales</span>
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-              Corralón y Ferretería
+    <header className={`fixed inset-x-0 top-0 z-50 ${scrolled ? 'shadow-[0_2px_0_#1A1E22]' : ''}`}>
+      <div className="h-[8px] w-full hazard-stripe" aria-hidden="true" />
+      <div className={`border-b-[2.5px] border-concrete-900 bg-concrete-50 ${scrolled ? 'bg-concrete-50/95 backdrop-blur' : ''}`}>
+        {/* top info bar - desktop only */}
+        <div className="hidden border-b border-concrete-200 bg-white lg:block">
+          <div className="mx-auto flex max-w-[1320px] items-center justify-between px-6 py-[7px] font-mono text-[11px] tracking-wide text-concrete-800">
+            <span className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                C. 70 374 — La Plata, Buenos Aires
+              </span>
+              <span className="h-3 w-px bg-concrete-200" />
+              <span>Lun–Vie 08:00–17:30 · Sáb 08:00–13:00</span>
             </span>
-          </span>
-        </a>
+            <span className="flex items-center gap-2">
+              <span className="opacity-60">PEDIDOS</span>
+              <a href={waLink(DEFAULT_MESSAGE)} className="font-bold hover:text-primary">
+                {COMPANY.whatsappDisplay}
+              </a>
+            </span>
+          </div>
+        </div>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Navegación principal">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-semibold text-slate-700 transition-colors hover:text-primary"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <a
-            href={waLink(DEFAULT_MESSAGE)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-primary-dark hover:shadow-md sm:inline-flex"
-          >
-            <MessageCircle size={18} />
-            Consultar por WhatsApp
+        <div className="mx-auto flex h-[68px] max-w-[1320px] items-center justify-between px-4 sm:px-6">
+          <a href="#inicio" className="flex items-center gap-3" aria-label="Volver al inicio">
+            <span className="flex h-10 w-10 items-center justify-center border-[2px] border-concrete-900 bg-white p-1.5 shadow-[3px_3px_0_#1A1E22]">
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="" className="h-full w-full object-contain" />
+            </span>
+            <span className="flex flex-col leading-none">
+              <span className="font-display text-[22px] font-black tracking-[0.02em] text-concrete-900">ALFA</span>
+              <span className="font-mono text-[10px] font-bold tracking-[0.18em] text-acer">MATERIALES</span>
+            </span>
+            <span className="ml-2 hidden h-8 w-px bg-concrete-200 sm:block" />
+            <span className="hidden flex-col pl-2 leading-tight sm:flex">
+              <span className="font-mono text-[10px] font-bold tracking-[0.14em] text-concrete-900">CORRALÓN</span>
+              <span className="font-mono text-[10px] tracking-[0.14em] text-acer">Y FERRETERÍA</span>
+            </span>
           </a>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 text-slate-700 lg:hidden"
-            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-            aria-expanded={open}
-          >
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegación principal">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label + link.href}
+                href={link.href}
+                className="font-mono text-[12px] font-bold tracking-[0.12em] text-concrete-900 underline-offset-4 hover:underline decoration-[2px] decoration-primary"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <a
+              href={waLink(DEFAULT_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden items-center gap-2 border-[2px] border-concrete-900 bg-primary px-5 py-[11px] font-mono text-[12px] font-bold tracking-[0.08em] text-white shadow-[4px_4px_0_#1A1E22] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#1A1E22] sm:inline-flex"
+            >
+              PEDIR POR WHATSAPP
+              <ArrowUpRight size={14} />
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex h-11 w-11 items-center justify-center border-[2px] border-concrete-900 bg-white text-concrete-900 shadow-[3px_3px_0_#1A1E22] lg:hidden active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_#1A1E22]"
+              aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={open}
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </div>
 
       {open && (
-        <nav className="border-t border-gray-100 bg-white px-4 pb-6 pt-2 lg:hidden" aria-label="Menú móvil">
-          <ul className="flex flex-col">
+        <nav className="border-b-[2.5px] border-concrete-900 bg-white px-4 pb-6 pt-2 lg:hidden" aria-label="Menú móvil">
+          <ul className="mt-2 flex flex-col divide-y divide-concrete-100">
             {NAV_LINKS.map((link) => (
-              <li key={link.label}>
+              <li key={link.label + link.href}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-3 text-base font-semibold text-slate-700 transition-colors hover:bg-gray-50 hover:text-primary"
+                  className="flex items-center justify-between py-4 font-mono text-[13px] font-bold tracking-[0.12em] text-concrete-900"
                 >
                   {link.label}
+                  <span className="text-acer">—</span>
                 </a>
               </li>
             ))}
@@ -87,25 +108,15 @@ export default function Header() {
             href={waLink(DEFAULT_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold text-white shadow-sm"
+            className="mt-4 flex w-full items-center justify-center gap-2 border-[2px] border-concrete-900 bg-primary py-3.5 font-mono text-sm font-bold tracking-wide text-white shadow-[4px_4px_0_#1A1E22]"
           >
-            <MessageCircle size={18} />
-            Consultar por WhatsApp
+            PEDIR POR WHATSAPP <ArrowUpRight size={16} />
           </a>
+          <p className="mt-3 text-center font-mono text-[11px] tracking-wide text-acer">
+            C. 70 374 · Lun–Vie 08–17:30 · Sáb 08–13
+          </p>
         </nav>
       )}
-
-      {open && (
-        <button
-          type="button"
-          aria-hidden="true"
-          className="fixed inset-0 -z-10 cursor-default"
-          onClick={() => setOpen(false)}
-          tabIndex={-1}
-        />
-      )}
-
-      <span className="sr-only">{COMPANY.name}</span>
     </header>
   )
 }

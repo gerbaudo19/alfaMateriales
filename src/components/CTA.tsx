@@ -1,37 +1,43 @@
-import { MessageCircle } from 'lucide-react'
-import Reveal from './Reveal'
+import { ArrowUpRight } from 'lucide-react'
 import { DEFAULT_MESSAGE, waLink } from '../data/site'
 
 export default function CTA() {
   return (
-    <section className="relative overflow-hidden bg-primary py-16 sm:py-20">
-      <div
-        className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-primary-dark/50 blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-primary-dark/50 blur-3xl"
-        aria-hidden="true"
-      />
-      <Reveal>
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-            ¿Estás buscando materiales para tu próximo proyecto?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">
-            Consultanos por los productos que necesitás y te ayudamos a encontrar la mejor opción.
-          </p>
-          <a
-            href={waLink(DEFAULT_MESSAGE)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-bold text-primary shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
-          >
-            <MessageCircle size={20} />
-            Consultar por WhatsApp
-          </a>
+    <section className="border-y-[2.5px] border-concrete-900 bg-concrete-900 text-white">
+      <div className="h-[8px] w-full hazard-stripe" aria-hidden="true" />
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6">
+        <div className="grid gap-8 py-10 sm:py-14 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div>
+            <span className="inline-flex border border-white/20 bg-white/10 px-2.5 py-1 font-mono text-[11px] font-bold tracking-[0.14em] text-obra-yellow">
+              ¿LISTO PARA CARGAR?
+            </span>
+            <h2 className="mt-3 font-display text-[38px] font-black leading-[0.9] sm:text-[46px]">
+              ¿BUSCÁS MATERIALES <span className="text-obra-yellow">PARA TU PRÓXIMO</span> PROYECTO?
+            </h2>
+            <p className="mt-4 max-w-[48ch] text-[16px] leading-7 text-white/70">
+              Mandanos lista, foto o audio. Te cotizamos en el día y armamos el acopio.
+            </p>
+          </div>
+
+          <div className="border-[2px] border-white bg-white p-4 text-concrete-900 shadow-[8px_8px_0_#FFD400] sm:p-6">
+            <div className="font-mono text-[11px] font-bold tracking-[0.16em] text-acer">COTIZACIÓN RÁPIDA</div>
+            <div className="mt-2 font-mono text-[11px] leading-5 text-acer">
+              Decinos: <span className="font-bold text-concrete-900">material · cantidad · zona de entrega</span>
+              <br />
+              Ej: “12 cemento + 3m arena — envío a Gonnet”
+            </div>
+            <a
+              href={waLink(DEFAULT_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex w-full items-center justify-center gap-2 bg-primary px-6 py-4 font-mono text-[13px] font-black tracking-[0.08em] text-white hover:bg-primary-dark"
+            >
+              CONSULTAR POR WHATSAPP <ArrowUpRight size={16} />
+            </a>
+            <div className="mt-3 text-center font-mono text-[11px] tracking-wide text-acer">Respuesta en el día · Lun–Sáb</div>
+          </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   )
 }

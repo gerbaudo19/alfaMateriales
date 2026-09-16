@@ -1,83 +1,180 @@
-import { MessageCircle, ArrowRight, HardHat, Wrench } from 'lucide-react'
-import { COMPANY, DEFAULT_MESSAGE, waLink } from '../data/site'
+import { ArrowUpRight, PackageCheck, Truck, Clock3 } from 'lucide-react'
+import { DEFAULT_MESSAGE, waLink } from '../data/site'
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative overflow-hidden bg-slate-900">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-800/60" />
-        <div
-          className="absolute -right-40 -top-40 h-[28rem] w-[28rem] rounded-full bg-primary/20 blur-3xl"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute -bottom-32 -left-32 h-[24rem] w-[24rem] rounded-full bg-slate-700/40 blur-3xl"
-          aria-hidden="true"
-        />
+    <section id="inicio" className="relative overflow-hidden bg-concrete-50 blueprint pt-[76px]">
+      {/* subtle top coordinate */}
+      <div className="pointer-events-none absolute left-6 top-[92px] hidden font-mono text-[10px] tracking-[0.18em] text-acer/60 lg:block">
+        34°55′ S — 57°57′ W — LA PLATA
+      </div>
+      <div className="pointer-events-none absolute right-6 top-[92px] hidden font-mono text-[10px] tracking-[0.18em] text-acer/60 lg:block">
+        STOCK ACTUAL · 15+ MATERIALES
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-4 py-28 sm:px-6 lg:px-8">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-2 backdrop-blur">
-            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo de Alfa Materiales" className="h-7 w-7 object-contain" />
-            <span className="text-sm font-semibold text-white">Corralón y Ferretería en La Plata</span>
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6">
+        <div className="grid gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-8 lg:py-16">
+          {/* left */}
+          <div className="lg:col-span-7">
+            <div className="inline-flex items-center gap-2 border border-concrete-900 bg-white px-3 py-1.5 shadow-[3px_3px_0_#1A1E22]">
+              <span className="h-2 w-2 bg-obra-yellow ring-1 ring-concrete-900" />
+              <span className="font-mono text-[11px] font-bold tracking-[0.14em] text-concrete-900">
+                CORRALÓN Y FERRETERÍA — LA PLATA
+              </span>
+              <span className="ml-2 hidden font-mono text-[11px] tracking-wide text-acer sm:inline">C. 70 374</span>
+            </div>
+
+            <h1 className="mt-6 font-display text-[54px] font-black leading-[0.85] tracking-[-0.02em] text-concrete-900 sm:text-[72px] lg:text-[84px]">
+              <span className="block">MATERIALES</span>
+              <span className="block flex items-center gap-3">
+                PARA
+                <span className="relative inline-flex border-[2.5px] border-concrete-900 bg-obra-yellow px-3 py-1 text-concrete-900 shadow-[5px_5px_0_#1A1E22] -rotate-[1.2deg] sm:px-4">
+                  CONSTRUIR
+                  <span className="pointer-events-none absolute -right-1 -top-1 h-2 w-2 bg-white ring-1 ring-concrete-900" />
+                  <span className="pointer-events-none absolute -left-1 -bottom-1 h-2 w-2 bg-white ring-1 ring-concrete-900" />
+                </span>
+              </span>
+              <span className="mt-1 block text-[42px] font-extrabold leading-none tracking-[-0.015em] text-white sm:text-[54px]" style={{ WebkitTextStroke: '1.8px #1A1E22', paintOrder: 'stroke fill' }}>
+                RENOVAR Y REPARAR.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-[48ch] border-l-[3px] border-obra-yellow pl-4 font-sans text-[17px] leading-7 text-acer sm:text-[18px]">
+              Acopiás todo en un solo lugar. Cemento, hierros, áridos y ferretería. Armá tu pedido y cotizá por WhatsApp en el día — sin vueltas.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#productos"
+                className="inline-flex items-center justify-center gap-2 border-[2.5px] border-concrete-900 bg-concrete-900 px-7 py-[15px] font-mono text-[13px] font-bold tracking-[0.1em] text-white shadow-[5px_5px_0_#D8D2C7] transition hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_#D8D2C7]"
+              >
+                VER STOCK DISPONIBLE
+                <ArrowUpRight size={16} />
+              </a>
+              <a
+                href={waLink(DEFAULT_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border-[2.5px] border-concrete-900 bg-white px-7 py-[15px] font-mono text-[13px] font-bold tracking-[0.1em] text-concrete-900 shadow-[5px_5px_0_#1A1E22] transition hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_#1A1E22]"
+              >
+                COTIZAR AHORA
+              </a>
+            </div>
+
+            <div className="mt-10 grid max-w-[520px] grid-cols-3 gap-3">
+              {[
+                { k: '15+', l: 'materiales', sub: 'en stock' },
+                { k: 'C.70', l: 'La Plata', sub: 'retiro en obra' },
+                { k: 'Lun–Sáb', l: '08:00–17:30', sub: 'atención directa' },
+              ].map((s) => (
+                <div key={s.k} className="border border-concrete-200 bg-white px-3 py-3">
+                  <div className="font-display text-[20px] font-black leading-none text-concrete-900">{s.k}</div>
+                  <div className="font-mono text-[11px] font-bold tracking-[0.08em] text-concrete-900">{s.l}</div>
+                  <div className="font-mono text-[10px] tracking-wide text-acer">{s.sub}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 className="mt-8 text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Todo lo que necesitás para <span className="text-primary-light">construir</span>,{' '}
-            <span className="text-primary-light">renovar</span> y{' '}
-            <span className="text-primary-light">reparar</span>.
-          </h1>
+          {/* right - remito */}
+          <div className="relative lg:col-span-5 lg:pt-4">
+            {/* blueprint corner marks */}
+            <div className="absolute -left-2 -top-2 hidden h-6 w-6 border-l-2 border-t-2 border-concrete-900/30 lg:block" />
+            <div className="absolute -right-2 -top-2 hidden h-6 w-6 border-r-2 border-t-2 border-concrete-900/30 lg:block" />
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-            Materiales de construcción, herramientas y productos para tus proyectos. Encontrá lo que
-            necesitás y consultanos directamente.
-          </p>
+            <div className="relative border-[2.5px] border-concrete-900 bg-white shadow-[10px_10px_0_#1A1E22]">
+              <div className="flex items-center justify-between border-b-[2.5px] border-concrete-900 bg-concrete-900 px-4 py-3 text-white">
+                <span className="font-mono text-[11px] font-bold tracking-[0.18em]">REMITO — ALFA / HOJA DE PEDIDO</span>
+                <span className="rounded bg-obra-yellow px-2 py-1 font-mono text-[10px] font-black tracking-wide text-concrete-900">EN EL DÍA</span>
+              </div>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#productos"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-7 py-4 text-base font-bold text-white shadow-lg shadow-primary/30 transition-all hover:bg-primary-dark hover:shadow-xl"
-            >
-              Ver materiales
-              <ArrowRight size={20} />
-            </a>
-            <a
-              href={waLink(DEFAULT_MESSAGE)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/5 px-7 py-4 text-base font-bold text-white backdrop-blur transition-all hover:border-white/50 hover:bg-white/10"
-            >
-              <MessageCircle size={20} className="text-green-400" />
-              Consultar por WhatsApp
-            </a>
+              <div className="border-b border-dashed border-concrete-300 bg-concrete-50 px-4 py-3">
+                <div className="flex items-center justify-between font-mono text-[11px]">
+                  <span className="tracking-[0.14em] text-acer">Nº 00374 · C. 70 e/ 2 y 3</span>
+                  <span className="font-bold text-concrete-900">LA PLATA</span>
+                </div>
+              </div>
+
+              <div className="px-4 pb-4 pt-4">
+                <div className="space-y-2.5 font-mono text-[13px]">
+                  {[
+                    { q: '12×', name: 'Cemento', note: 'bolsa 50kg' },
+                    { q: '8×', name: 'Hierros Ø 8', note: 'barra 12m' },
+                    { q: '2 m³', name: 'Arena fina', note: 'a granel' },
+                    { q: '1×', name: 'Chapas', note: 'acanalada 1,10' },
+                  ].map((row) => (
+                    <div key={row.name} className="flex items-center gap-3 border-b border-concrete-100 py-2.5 last:border-0">
+                      <span className="inline-flex h-5 w-5 items-center justify-center border border-concrete-900 bg-obra-yellow text-[11px] font-black text-concrete-900">
+                        ✓
+                      </span>
+                      <span className="w-10 shrink-0 font-bold text-concrete-900">{row.q}</span>
+                      <span className="flex-1 font-bold tracking-wide text-concrete-900">{row.name}</span>
+                      <span className="text-[11px] tracking-wide text-acer">{row.note}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex items-center justify-between border-y-[2px] border-concrete-900 bg-concrete-50 px-3 py-3">
+                  <span className="font-mono text-[11px] font-bold tracking-[0.14em] text-concrete-900">TOTAL ESTIMADO</span>
+                  <span className="font-mono text-[11px] tracking-wide text-acer">a confirmar por WhatsApp ———</span>
+                </div>
+
+                <a
+                  href={waLink('Hola, quiero armar un pedido con varios materiales. ¿Me pasan cotización?')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 flex w-full items-center justify-center gap-2 bg-primary px-4 py-3.5 font-mono text-[13px] font-black tracking-[0.1em] text-white transition hover:bg-primary-dark"
+                >
+                  ENVIAR HOJA POR WHATSAPP
+                  <ArrowUpRight size={16} />
+                </a>
+
+                <p className="mt-3 text-center font-mono text-[10px] tracking-wide text-acer">
+                  Copiamos tu pedido tal cual lo ves. Sin formularios.
+                </p>
+              </div>
+
+              {/* perforation */}
+              <div className="flex items-center gap-1 border-t border-dashed border-concrete-300 px-2 py-2">
+                {Array.from({ length: 28 }).map((_, i) => (
+                  <span key={i} className="h-1.5 w-1.5 rounded-full bg-concrete-200" />
+                ))}
+              </div>
+            </div>
+
+            {/* floating badge */}
+            <div className="absolute -bottom-4 -left-2 hidden items-center gap-2 border-[2px] border-concrete-900 bg-white px-3 py-2 shadow-[4px_4px_0_#1A1E22] sm:flex lg:-left-6">
+              <span className="flex h-8 w-8 items-center justify-center bg-concrete-900 text-white">
+                <Truck size={16} />
+              </span>
+              <div className="pr-2 leading-tight">
+                <div className="font-mono text-[11px] font-black tracking-[0.08em] text-concrete-900">ENTREGA EN OBRA</div>
+                <div className="font-mono text-[10px] tracking-wide text-acer">Coordiná por WhatsApp</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-          <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur">
-            <HardHat size={26} className="shrink-0 text-primary-light" />
-            <div>
-              <p className="text-sm font-bold text-white">Corralón</p>
-              <p className="text-xs text-slate-400">Materiales de construcción</p>
+        <div className="grid grid-cols-1 gap-3 pb-6 sm:grid-cols-3">
+          {[
+            { icon: PackageCheck, title: 'Stock visible', text: 'Foto real del material. Lo que ves es lo que retirás.' },
+            { icon: Truck, title: 'Acopiás todo junto', text: 'Corralón + ferretería en un solo viaje.' },
+            { icon: Clock3, title: 'Respuesta en el día', text: 'Cotización por WhatsApp sin demora.' },
+          ].map((f) => (
+            <div key={f.title} className="flex items-start gap-3 border border-concrete-200 bg-white px-4 py-4">
+              <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-concrete-900 bg-concrete-900 text-white">
+                <f.icon size={18} />
+              </span>
+              <div>
+                <div className="font-mono text-[12px] font-bold tracking-[0.1em] text-concrete-900">{f.title.toUpperCase()}</div>
+                <div className="mt-1 text-[13px] leading-5 text-acer">{f.text}</div>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur">
-            <Wrench size={26} className="shrink-0 text-primary-light" />
-            <div>
-              <p className="text-sm font-bold text-white">Ferretería</p>
-              <p className="text-xs text-slate-400">Artículos y herramientas</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur">
-            <span className="shrink-0 text-xl leading-none text-primary-light">📍</span>
-            <div>
-              <p className="text-sm font-bold text-white">{COMPANY.address.line1}</p>
-              <p className="text-xs text-slate-400">{COMPANY.address.line2}</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
+
+      <div className="h-[10px] w-full hazard-stripe" aria-hidden="true" />
     </section>
   )
 }

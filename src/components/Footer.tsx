@@ -1,38 +1,36 @@
-import { MessageCircle, Mail, Phone, MapPin, Instagram, Clock } from 'lucide-react'
 import { COMPANY, DEFAULT_MESSAGE, NAV_LINKS, waLink } from '../data/site'
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-slate-300">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-1">
+    <footer className="bg-concrete-900 text-white">
+      <div className="h-[8px] w-full hazard-stripe" aria-hidden="true" />
+      <div className="mx-auto max-w-[1320px] px-4 py-10 sm:px-6">
+        <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1fr]">
+          <div>
             <a href="#inicio" className="flex items-center gap-3">
-              <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="Logo de Alfa Materiales"
-                className="h-12 w-12 object-contain"
-              />
-              <span className="flex flex-col leading-tight">
-                <span className="text-xl font-extrabold text-white">Alfa Materiales</span>
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                  Corralón y Ferretería
-                </span>
+              <span className="flex h-11 w-11 items-center justify-center border border-white bg-white p-1.5">
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo de Alfa Materiales" className="h-full w-full object-contain" />
+              </span>
+              <span className="flex flex-col leading-none">
+                <span className="font-display text-[22px] font-black tracking-wide">ALFA</span>
+                <span className="font-mono text-[10px] tracking-[0.16em] opacity-60">MATERIALES — C.70 374</span>
               </span>
             </a>
-            <p className="mt-4 max-w-xs text-sm text-slate-400">
-              Materiales de construcción y productos de ferretería en La Plata. Todo para tus
-              proyectos.
+            <p className="mt-4 max-w-xs font-mono text-[12px] leading-5 text-white/60">
+              Corralón y ferretería en La Plata. Materiales para obra gruesa y fina, todo en un solo acopio.
             </p>
+            <div className="mt-4 inline-flex border border-obra-yellow bg-obra-yellow px-3 py-1.5 font-mono text-[11px] font-black tracking-[0.08em] text-concrete-900">
+              LUN–VIE 08–17:30 · SÁB 08–13
+            </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Navegación</h3>
-            <ul className="mt-4 space-y-2.5 text-sm">
+            <h3 className="font-mono text-[11px] font-black tracking-[0.14em] text-obra-yellow">NAVEGACIÓN</h3>
+            <ul className="mt-4 space-y-2">
               {NAV_LINKS.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="text-slate-400 transition-colors hover:text-primary-light">
-                    {link.label}
+                <li key={link.label + link.href}>
+                  <a href={link.href} className="font-mono text-[13px] tracking-wide text-white/70 hover:text-white">
+                    — {link.label}
                   </a>
                 </li>
               ))}
@@ -40,71 +38,43 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Contacto</h3>
-            <ul className="mt-4 space-y-3 text-sm">
+            <h3 className="font-mono text-[11px] font-black tracking-[0.14em] text-obra-yellow">CONTACTO</h3>
+            <ul className="mt-4 space-y-2 font-mono text-[13px] text-white/70">
               <li>
-                <a
-                  href={waLink(DEFAULT_MESSAGE)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-slate-400 transition-colors hover:text-primary-light"
-                >
-                  <WhatsIcon /> {COMPANY.whatsappDisplay}
+                <a href={waLink(DEFAULT_MESSAGE)} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  {COMPANY.whatsappDisplay}
                 </a>
               </li>
               <li>
-                <a
-                  href={COMPANY.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-slate-400 transition-colors hover:text-primary-light"
-                >
-                  <Instagram size={18} className="shrink-0" /> {COMPANY.instagramHandle}
+                <a href={COMPANY.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  {COMPANY.instagramHandle}
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${COMPANY.email}`}
-                  className="flex items-center gap-3 text-slate-400 transition-colors hover:text-primary-light"
-                >
-                  <Mail size={18} className="shrink-0" /> {COMPANY.email}
+                <a href={`mailto:${COMPANY.email}`} className="break-all hover:text-white">
+                  {COMPANY.email}
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Dirección</h3>
-            <ul className="mt-4 space-y-3 text-sm text-slate-400">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="mt-0.5 shrink-0" />
-                <span>
-                  {COMPANY.address.line1}
-                  <br />
-                  {COMPANY.address.line2}
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Phone size={18} className="mt-0.5 shrink-0" />
-                <span>Lunes a viernes: 08:00 a 17:30 hs</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Clock size={18} className="mt-0.5 shrink-0" />
-                <span>Sábados: 08:00 a 13:00 hs · Domingos: Cerrado</span>
-              </li>
-            </ul>
+            <h3 className="font-mono text-[11px] font-black tracking-[0.14em] text-obra-yellow">DIRECCIÓN</h3>
+            <div className="mt-4 font-mono text-[13px] leading-5 text-white/70">
+              {COMPANY.address.line1}
+              <br />
+              {COMPANY.address.line2}
+              <br />
+              <span className="text-white/40">{COMPANY.address.cp} · Argentina</span>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
-          <p className="text-sm text-slate-500">© 2026 Alfa Materiales</p>
-          <p className="text-sm text-slate-500">Corralón y Ferretería en La Plata.</p>
+        <div className="flex flex-col gap-2 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[11px] tracking-[0.08em] text-white/40">© 2026 ALFA MATERIALES — HECHO EN LA PLATA</p>
+          <p className="font-mono text-[11px] tracking-wide text-white/40">Corralón y Ferretería · C.70 entre 2 y 3</p>
         </div>
       </div>
     </footer>
   )
-}
-
-function WhatsIcon() {
-  return <MessageCircle size={18} className="shrink-0" />
 }

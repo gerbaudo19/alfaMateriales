@@ -1,5 +1,14 @@
 import { ArrowUpRight } from 'lucide-react'
 
+// rendering-hoist-jsx: datos estáticos fuera del render
+const BENEFITS = [
+  { n: '01', t: 'Variedad real', d: 'Surtido para grueso y fino. Lo que no hay, lo conseguimos.' },
+  { n: '02', t: 'Un solo acopio', d: 'Levantas todo junto. Ahorrás flete y tiempo.' },
+  { n: '03', t: 'Asesoramiento', d: 'Te ayudamos a calcular cantidades y elegir bien.' },
+] as const
+
+const BASE_URL = import.meta.env.BASE_URL
+
 export default function About() {
   return (
     <section id="nosotros" className="bg-white">
@@ -15,11 +24,7 @@ export default function About() {
             </p>
 
             <div className="mt-8 grid grid-cols-1 gap-3">
-              {[
-                { n: '01', t: 'Variedad real', d: 'Surtido para grueso y fino. Lo que no hay, lo conseguimos.' },
-                { n: '02', t: 'Un solo acopio', d: 'Levantas todo junto. Ahorrás flete y tiempo.' },
-                { n: '03', t: 'Asesoramiento', d: 'Te ayudamos a calcular cantidades y elegir bien.' },
-              ].map((b) => (
+              {BENEFITS.map((b) => (
                 <div key={b.n} className="flex gap-4 border border-concrete-200 bg-concrete-50 px-4 py-4">
                   <span className="font-display text-[28px] font-black leading-none text-concrete-200">{b.n}</span>
                   <div>
@@ -39,10 +44,13 @@ export default function About() {
               </div>
               <div className="relative aspect-[4/3] overflow-hidden bg-concrete-100">
                 <img
-                  src={`${import.meta.env.BASE_URL}products/empresa.jpg`}
+                  src={`${BASE_URL}products/empresa.jpg`}
                   alt="Fachada de Alfa Materiales"
                   className="h-full w-full object-cover"
                   loading="lazy"
+                  decoding="async"
+                  width={640}
+                  height={480}
                 />
                 <div className="absolute bottom-3 left-3 border border-concrete-900 bg-obra-yellow px-3 py-1.5 font-mono text-[11px] font-black tracking-[0.08em] text-concrete-900">
                   CONFIANZA EN CADA PROYECTO

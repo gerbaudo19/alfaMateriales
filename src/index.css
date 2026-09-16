@@ -5,6 +5,11 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  color-scheme: light;
+}
+
+[id] {
+  scroll-margin-top: 5rem;
 }
 
 body {
@@ -46,6 +51,20 @@ body {
   opacity: 0.04;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* rendering-content-visibility: diferir paint de offscreen (1000 items = 10x más rápido) */
+.product-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 340px;
+}
+
+/* js-batch-dom-css: usar clase en lugar de inline styles para scroll */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 /* focus */

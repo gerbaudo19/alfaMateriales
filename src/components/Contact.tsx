@@ -1,5 +1,79 @@
+import { useEffect, useRef, useState } from 'react'
 import { MapPin, MessageCircle, Mail, Clock, Navigation, ArrowUpRight } from 'lucide-react'
 import { COMPANY, DEFAULT_MESSAGE, waLink } from '../data/site'
+
+// bundle-defer-third-party: iframe de Google Maps solo cuando entra en viewport
+function DeferredMap() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    let observer: IntersectionObserver | null = null
+    // js-request-idle-callback: defer observer setup a idle, fallback a timeout
+    const win = window as unknown as {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number
+      cancelIdleCallback?: (id: number) => void
+    }
+    const startObserve = () => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) {
+            setShouldLoad(true)
+            observer?.disconnect()
+          }
+        },
+        { rootMargin: '200px' },
+      )
+      observer.observe(node)
+    }
+    let idleId: number | undefined
+    let timeoutId: number | undefined
+    if (win.requestIdleCallback) {
+      idleId = win.requestIdleCallback(startObserve, { timeout: 800 })
+    } else {
+      timeoutId = window.setTimeout(startObserve, 300) as unknown as number
+    }
+    return () => {
+      if (idleId !== undefined) win.cancelIdleCallback?.(idleId)
+      if (timeoutId !== undefined) clearTimeout(timeoutId)
+      observer?.disconnect()
+    }
+  }, [])
+
+  return (
+    <div ref={ref} className="relative min-h-[380px] bg-concrete-100 lg:col-span-3">
+      {shouldLoad ? (
+        <iframe
+          src={COMPANY.mapsEmbed}
+          title="Mapa de ubicación de Alfa Materiales"
+          className="absolute inset-0 h-full w-full grayscale-[0.15] contrast-[1.05]"
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-concrete-100">
+              <span role="status" aria-live="polite" className="font-mono text-xs tracking-wide text-acer">Cargando mapa…</span>
+        </div>
+      )}
+      <div className="pointer-events-none absolute inset-0 border-[6px] border-white/60" />
+      <a
+        href={COMPANY.mapsLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-[2px] border-concrete-900 bg-concrete-900 px-4 py-3 font-mono text-[12px] font-black tracking-[0.08em] text-white shadow-[4px_4px_0_#FFD400] hover:bg-black"
+      >
+        ABRIR EN GOOGLE MAPS <ArrowUpRight size={14} />
+      </a>
+      <div className="absolute right-4 top-4 hidden border border-concrete-900 bg-white px-3 py-2 font-mono text-[11px] tracking-wide text-acer shadow-[4px_4px_0_#1A1E22] sm:block">
+        <span className="font-black text-concrete-900">C.70 374</span> · ENTRE 2 Y 3 · LA PLATA
+      </div>
+    </div>
+  )
+}
 
 export default function Contact() {
   return (
@@ -9,7 +83,7 @@ export default function Contact() {
           <div className="grid gap-0 lg:grid-cols-5">
             <div className="border-b-[2.5px] border-concrete-900 p-6 sm:p-8 lg:col-span-2 lg:border-b-0 lg:border-r-[2.5px]">
               <span className="font-mono text-[11px] font-bold tracking-[0.18em] text-acer">04 — ENCONTRANOS</span>
-              <h2 className="mt-2 font-display text-[36px] font-black leading-[0.9] text-concrete-900">EN OBRA Y EN EL MAPA</h2>
+              <h2 className="mt-2 text-balance font-display text-[36px] font-black leading-[0.9] text-concrete-900">EN OBRA Y EN EL MAPA</h2>
               <p className="mt-3 text-[14px] leading-6 text-acer">Visitános, escribinos o coordiná retiro y entrega.</p>
 
               <div className="mt-6 space-y-3">
@@ -96,29 +170,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="relative min-h-[380px] bg-concrete-100 lg:col-span-3">
-              <iframe
-                src={COMPANY.mapsEmbed}
-                title="Mapa de ubicación de Alfa Materiales"
-                className="absolute inset-0 h-full w-full grayscale-[0.15] contrast-[1.05]"
-                style={{ border: 0 }}
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <div className="pointer-events-none absolute inset-0 border-[6px] border-white/60" />
-              <a
-                href={COMPANY.mapsLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-[2px] border-concrete-900 bg-concrete-900 px-4 py-3 font-mono text-[12px] font-black tracking-[0.08em] text-white shadow-[4px_4px_0_#FFD400] hover:bg-black"
-              >
-                ABRIR EN GOOGLE MAPS <ArrowUpRight size={14} />
-              </a>
-              <div className="absolute right-4 top-4 hidden border border-concrete-900 bg-white px-3 py-2 font-mono text-[11px] tracking-wide text-acer shadow-[4px_4px_0_#1A1E22] sm:block">
-                <span className="font-black text-concrete-900">C.70 374</span> · ENTRE 2 Y 3 · LA PLATA
-              </div>
-            </div>
+            <DeferredMap />
           </div>
         </div>
       </div>

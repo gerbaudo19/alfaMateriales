@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://orsoft-ar.github.io/alfaMateriales/sitemap.xml

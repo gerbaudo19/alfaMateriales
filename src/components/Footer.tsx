@@ -9,7 +9,15 @@ export default function Footer() {
           <div>
             <a href="#inicio" className="flex items-center gap-3">
               <span className="flex h-11 w-11 items-center justify-center border border-white bg-white p-1.5">
-                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo de Alfa Materiales" className="h-full w-full object-contain" />
+                <img
+                  src={`${import.meta.env.BASE_URL}logo.png`}
+                  alt="Logo de Alfa Materiales"
+                  className="h-full w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  width={44}
+                  height={44}
+                />
               </span>
               <span className="flex flex-col leading-none">
                 <span className="font-display text-[22px] font-black tracking-wide">ALFA</span>

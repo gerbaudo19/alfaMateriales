@@ -24,7 +24,7 @@ export default function Hero() {
               <span className="ml-2 hidden font-mono text-[11px] tracking-wide text-acer sm:inline">C. 70 374</span>
             </div>
 
-            <h1 className="mt-6 font-display text-[54px] font-black leading-[0.85] tracking-[-0.02em] text-concrete-900 sm:text-[72px] lg:text-[84px]">
+            <h1 className="mt-6 text-balance font-display text-[54px] font-black leading-[0.85] tracking-[-0.02em] text-concrete-900 sm:text-[72px] lg:text-[84px]">
               <span className="block">MATERIALES</span>
               <span className="block flex items-center gap-3">
                 PARA
@@ -45,21 +45,24 @@ export default function Hero() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#productos"
-                className="inline-flex items-center justify-center gap-2 border-[2.5px] border-concrete-900 bg-concrete-900 px-7 py-[15px] font-mono text-[13px] font-bold tracking-[0.1em] text-white shadow-[5px_5px_0_#D8D2C7] transition hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_#D8D2C7]"
-              >
-                VER STOCK DISPONIBLE
-                <ArrowUpRight size={16} />
-              </a>
-              <a
-                href={waLink(DEFAULT_MESSAGE)}
+                href={waLink(DEFAULT_MESSAGE, 'hero-primary')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border-[2.5px] border-concrete-900 bg-white px-7 py-[15px] font-mono text-[13px] font-bold tracking-[0.1em] text-concrete-900 shadow-[5px_5px_0_#1A1E22] transition hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_#1A1E22]"
+                data-cta="hero-primary"
+                className="inline-flex items-center justify-center gap-2 border-[2.5px] border-concrete-900 bg-primary px-7 py-[15px] font-mono text-[13px] font-black tracking-[0.1em] text-white shadow-[5px_5px_0_#1A1E22] transition-[transform,box-shadow] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_#1A1E22]"
               >
-                COTIZAR AHORA
+                COTIZAR POR WHATSAPP
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <a
+                href="#productos"
+                className="inline-flex items-center justify-center gap-2 border-[2.5px] border-concrete-900 bg-white px-7 py-[15px] font-mono text-[13px] font-bold tracking-[0.1em] text-concrete-900 shadow-[5px_5px_0_#D8D2C7] transition-[transform,box-shadow] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0_#D8D2C7]"
+              >
+                VER STOCK DISPONIBLE
+                <ArrowUpRight size={16} aria-hidden="true" />
               </a>
             </div>
+            <p className="mt-3 font-mono text-[11px] tracking-wide text-acer">Respuesta hoy · Lun–Sáb 08:00–17:30 · Sin formularios</p>
 
             <div className="mt-10 grid max-w-[520px] grid-cols-3 gap-3">
               {[
@@ -120,13 +123,14 @@ export default function Hero() {
                 </div>
 
                 <a
-                  href={waLink('Hola, quiero armar un pedido con varios materiales. ¿Me pasan cotización?')}
+                  href={waLink('Hola, quiero armar un pedido con varios materiales. ¿Me pasan cotización?', 'hero-remito')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 flex w-full items-center justify-center gap-2 bg-primary px-4 py-3.5 font-mono text-[13px] font-black tracking-[0.1em] text-white transition hover:bg-primary-dark"
+                  data-cta="hero-remito"
+                  className="mt-4 flex w-full items-center justify-center gap-2 bg-primary px-4 py-3.5 font-mono text-[13px] font-black tracking-[0.1em] text-white transition-colors hover:bg-primary-dark"
                 >
                   ENVIAR HOJA POR WHATSAPP
-                  <ArrowUpRight size={16} />
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
 
                 <p className="mt-3 text-center font-mono text-[10px] tracking-wide text-acer">
@@ -145,7 +149,7 @@ export default function Hero() {
             {/* floating badge */}
             <div className="absolute -bottom-4 -left-2 hidden items-center gap-2 border-[2px] border-concrete-900 bg-white px-3 py-2 shadow-[4px_4px_0_#1A1E22] sm:flex lg:-left-6">
               <span className="flex h-8 w-8 items-center justify-center bg-concrete-900 text-white">
-                <Truck size={16} />
+                <Truck size={16} aria-hidden="true" />
               </span>
               <div className="pr-2 leading-tight">
                 <div className="font-mono text-[11px] font-black tracking-[0.08em] text-concrete-900">ENTREGA EN OBRA</div>
@@ -163,7 +167,7 @@ export default function Hero() {
           ].map((f) => (
             <div key={f.title} className="flex items-start gap-3 border border-concrete-200 bg-white px-4 py-4">
               <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center border border-concrete-900 bg-concrete-900 text-white">
-                <f.icon size={18} />
+                <f.icon size={18} aria-hidden="true" />
               </span>
               <div>
                 <div className="font-mono text-[12px] font-bold tracking-[0.1em] text-concrete-900">{f.title.toUpperCase()}</div>

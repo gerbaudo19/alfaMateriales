@@ -23,8 +23,9 @@ export const COMPANY = {
   ],
 } as const
 
-export function waLink(message: string): string {
-  return `https://wa.me/${COMPANY.whatsappNumber}?text=${encodeURIComponent(message)}`
+export function waLink(message: string, source?: string): string {
+  const base = `https://wa.me/${COMPANY.whatsappNumber}?text=${encodeURIComponent(message)}`
+  return source ? `${base}&utm_source=alfa_landing&utm_medium=whatsapp&utm_campaign=${source}` : base
 }
 
 export const DEFAULT_MESSAGE = 'Hola, quería realizar una consulta sobre los productos de Alfa Materiales.'
@@ -209,8 +210,8 @@ export interface NavLink {
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Inicio', href: '#inicio' },
-  { label: 'Corralón', href: '#rubros' },
-  { label: 'Ferretería', href: '#rubros' },
+  { label: 'Corralón', href: '#productos' },
+  { label: 'Ferretería', href: '#productos' },
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Contacto', href: '#contacto' },
 ]

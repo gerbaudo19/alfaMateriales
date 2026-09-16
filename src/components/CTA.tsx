@@ -11,7 +11,7 @@ export default function CTA() {
             <span className="inline-flex border border-white/20 bg-white/10 px-2.5 py-1 font-mono text-[11px] font-bold tracking-[0.14em] text-obra-yellow">
               ¿LISTO PARA CARGAR?
             </span>
-            <h2 className="mt-3 font-display text-[38px] font-black leading-[0.9] sm:text-[46px]">
+            <h2 className="mt-3 text-balance font-display text-[38px] font-black leading-[0.9] sm:text-[46px]">
               ¿BUSCÁS MATERIALES <span className="text-obra-yellow">PARA TU PRÓXIMO</span> PROYECTO?
             </h2>
             <p className="mt-4 max-w-[48ch] text-[16px] leading-7 text-white/70">
@@ -27,12 +27,13 @@ export default function CTA() {
               Ej: “12 cemento + 3m arena — envío a Gonnet”
             </div>
             <a
-              href={waLink(DEFAULT_MESSAGE)}
+              href={waLink(DEFAULT_MESSAGE, 'cta-section')}
               target="_blank"
               rel="noopener noreferrer"
+              data-cta="cta-section"
               className="mt-4 flex w-full items-center justify-center gap-2 bg-primary px-6 py-4 font-mono text-[13px] font-black tracking-[0.08em] text-white hover:bg-primary-dark"
             >
-              CONSULTAR POR WHATSAPP <ArrowUpRight size={16} />
+              ENVIAR LISTA POR WHATSAPP <ArrowUpRight size={16} aria-hidden="true" />
             </a>
             <div className="mt-3 text-center font-mono text-[11px] tracking-wide text-acer">Respuesta en el día · Lun–Sáb</div>
           </div>
